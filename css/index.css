@@ -1,0 +1,25 @@
+@import "css1.css";
+@import "css2.css";
+.bgimg{
+	background-image: url("images/bgimg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color:black;
+}
+label{
+	font-size: 14pt;
+}
+.alt{
+	font-size:12pt;
+}
+.ryg{
+	z-index:-1;
+}
+input{
+	border-radius: 25px;
+	width: 50%;
+	font-size:8pt;
+	z-index:5;
+}
+
+
