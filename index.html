@@ -11,21 +11,44 @@
 <link rel="icon" type="image/png" href="images/Bit.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/css1.css">
+<link rel="stylesheet" href="css/css2.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/cssfamily=Montserrat&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-<script src="script/index.js"></script>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<style>
+.bgimg{
+	background-image: url("images/bgimg.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-color:black;
+}
+input{
+	border-radius: 25px;
+	width: 50%;
+	font-size:14pt;
+	z-index:5;
+}
+label{
+	font-size: 14pt;
+}
+.alt{
+	font-size:12pt;
+}
+.ryg{
+	z-index:-1;
+}
+
+
+</style>
 
 </head>
 <body class="bgimg">
 
 <!-- User entry -->
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="Login">
-<button class="w3-left w3-button" onclick="w3_closeL()" style="z-index:5" id="closeL"><i class="fa fa-remove"></i></button>
+<button class="w3-left w3-button" onclick="w3_closeL()" id="closeL"><i class="fa fa-remove"></i></button>
   <a name="login"><h1 class="w3-xxxlarge w3-text-theme">Login</h1></a>
   <form id="Login" action="usprof/usprof.html">
   <label for="uem">Email or Username:</label><br>
@@ -35,6 +58,8 @@
 <input type="submit" name="Login" id="hs" onclick="hello" value="Submit" style="border-radius: 25px" class="w3-button w3-theme"/>
   </form>
   <div class="alt"><p>or go to <span style="color:blue;"><a href="#signup">Sign Up</a></span></p></div>
+  
+  
 </div>
 <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="SignUp">
   <button class="w3-left w3-button" onclick="w3_closeS()" id="closeS"><i class="fa fa-remove"></i></button>
@@ -66,6 +91,33 @@
 <br></p> 
 </div>
 </div>
+
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Side navigation
+function w3_openL(){
+  var x = document.getElementById("Login");
+  x.style.width = "100%";
+  x.style.fontSize = "40px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+function w3_closeL(){
+  document.getElementById("Login").style.display = "none";
+}
+function w3_openS(){
+  var x = document.getElementById("SignUp");
+  x.style.width = "100%";
+  x.style.fontSize = "40px";
+  x.style.paddingTop = "10%";
+  x.style.display = "block";
+}
+function w3_closeS() {
+  document.getElementById("SignUp").style.display = "none";
+}
+
+</script>
+
 </body>
 </html>
 
