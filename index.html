@@ -1,123 +1,172 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <!--
-    Modified from the Debian original for Ubuntu
-    Last updated: 2016-11-16
-    See: https://launchpad.net/bugs/1288690
-  -->
-<head>
-<title>Home</title>
-<base href="https://mirzaazwad.github.io/MISTHackathon/">
-<link rel="icon" type="image/png" href="images/Bit.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/css1.css">
-<link rel="stylesheet" href="css/css2.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/cssfamily=Montserrat&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-<style>
-.bgimg{
-	background-image: url("images/bgimg.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-color:black;
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/9.1.3/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/9.1.3/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/9.1.3/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="images/Bit.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/css1.css">
+    <link rel="stylesheet" href="css/css2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/cssfamily=Montserrat&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+    .bgimg{
+      background-image: url("images/bgimg.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color:black;
+    }
+    input{
+      border-radius: 25px;
+      width: 50%;
+      font-size:14pt;
+      z-index:5;
+    }
+    label{
+      font-size: 14pt;
+    }
+    .alt{
+      font-size:12pt;
+    }
+    .ryg{
+      z-index:-1;
+    }
+    
+    
+    </style>
+    
+  </head>
+  <body class="bgimg">
+
+    <!-- User entry -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="Login">
+   
+    <button class="w3-left w3-button" onclick="w3_closeL()" id="closeL"><i class="fa fa-remove"></i></button>
+      <a name="login"><h1 class="w3-xxxlarge w3-text-theme">Login</h1></a>
+      <label for="uem">Email or Username:</label><br>
+      <input type="text"  id="uem" required><br/>
+      <label for="pass2">Password: </label><br/>
+      <input type="password" id="pass2" name="password" required><br/><br/>
+      <button  style="border-radius: 25px" class="w3-button w3-theme w3-large" onclick="emailLogin()">Submit</button>
+      <div class="alt"><p><span style="color:blue;">or</span></p></div>
+      <button class="w3-button w3-red w3-small" style="border-radius: 25px" onclick="googleLogin()">Login With Google</button>
+      
+      
+      
+    </div>
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="SignUp">
+      <button class="w3-left w3-button" onclick="w3_closeS()" id="closeS"><i class="fa fa-remove"></i></button>
+      <a name="signup"><h1 class="w3-xxxlarge w3-text-theme">Sign Up</h1></a>
+      <form id="Sign Up" >
+      <label for="em">Email</label><br>
+      <input type="text"  name="em" required><br>
+        <label for="um">Username</label><br>
+      <input type="text" id="uem"  name="um" required><br>
+      <label for="pass">Password: </label><br/>
+      <input type="password"  name="password" required><br/>
+      <label for="pass2">Confirm Password: </label><br/>
+      <input type="password"  name="password2" required><br/>
+      <br/>
+    <input type="submit" name="SignUp" value="Submit" style="border-radius: 25px" class="w3-button w3-theme"/></form>
+    <button class="w3-button w3-red w3-small" style="border-radius: 25px"onclick="googleLogin()">Login With Google</button>
+      
+    </div>
+    <header class="w3-container w3-padding" style="margin-left:20;margin-right:20;">
+      <button onclick="w3_openS()" style="border-radius: 25px" class="w3-xlarge w3-button w3-theme w3-right">Sign Up</button>
+      <button onclick="w3_openL()" style="border-radius: 25px" class="w3-xlarge w3-button w3-right w3-text-white">Login</button>
+      </header>
+    <div class="w3-middle w3-text-white w3-right ryg" >
+    <br><br><br><br><br><br><br>
+    <div class="w3-right w3-padding" style="text-decoration:bold;margin-right:25">
+    <h1 style="text-decoration:bold" class=""><b>Reach your goals;<br> <span style="font-family:Fredoka One;color:#F2CD5E;font-size:32pt;">Bit.</span> by <span style="font-family:Fredoka One;color:#F2CD5E;font-size:32pt;">Bit.</span></b></h1>
+    <p style="text-decoration:bold;font-size:14pt;">A platform by the students, of the students and for <br>the students consisting of top-notch students's<br> notes to help a student thrive<br>
+    <br></p> 
+    </div>
+    </div>
+    <!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+    <script>
+    // Side navigation
+    function w3_openL(){
+      var x = document.getElementById("Login");
+      x.style.width = "100%";
+      x.style.fontSize = "40px";
+      x.style.paddingTop = "10%";
+      x.style.display = "block";
+    }
+    function w3_closeL(){
+      document.getElementById("Login").style.display = "none";
+    }
+    function w3_openS(){
+      var x = document.getElementById("SignUp");
+      x.style.width = "100%";
+      x.style.fontSize = "40px";
+      x.style.paddingTop = "10%";
+      x.style.display = "block";
+    }
+    function w3_closeS() {
+      document.getElementById("SignUp").style.display = "none";
+    }
+    function emailLogin(){
+      var email = document.getElementById("uem").value;
+      var password = document.getElementById("pass2").value;
+      if(email=="sadnam_sakib@iut-dhaka.edu" && password=="1234"){
+        window.location.replace("usprof/sadnam_sakib.html");
+      }
+      else if(email=="nr_rasul@iut-dhaka.edu" && password=="12345"){
+        window.location.replace("usprof/nr_rasul.html");
+      }
+      else if(email=="mirzaazwad@iut-dhaka.edu" && password=="123456"){
+        window.location.replace("usprof/mirza.azwad.html");
+      }
+      else{
+        //<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+        alert("Wrong Password and Email Combination")   ;   
+      }
 }
-input{
-	border-radius: 25px;
-	width: 50%;
-	font-size:14pt;
-	z-index:5;
-}
-label{
-	font-size: 14pt;
-}
-.alt{
-	font-size:12pt;
-}
-.ryg{
-	z-index:-1;
+    
+    </script> 
+    <script>
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+    trigger: 'focus'
+    })
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded",event=>{
+    const app=firebase.app();
+    console.log(app);
+});
+function googleLogin(){
+    const provider=new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+    .then(result =>{
+        const user=result.user;
+        console.log(user)
+    })
+    .catch(console.log);
 }
 
-
-</style>
-
-</head>
-<body class="bgimg">
-
-<!-- User entry -->
-<div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="Login">
-<button class="w3-left w3-button" onclick="w3_closeL()" id="closeL"><i class="fa fa-remove"></i></button>
-  <a name="login"><h1 class="w3-xxxlarge w3-text-theme">Login</h1></a>
-  <form id="Login" action="usprof/usprof.html">
-  <label for="uem">Email or Username:</label><br>
-  <input type="text"  name="uem" required><br/>
-  <label for="pass">Password: </label><br/>
-  <input type="password" id="pass" name="password" required><br/><br/>
-<input type="submit" name="Login" id="hs" onclick="hello" value="Submit" style="border-radius: 25px" class="w3-button w3-theme"/>
-  </form>
-  <div class="alt"><p>or go to <span style="color:blue;"><a href="#signup">Sign Up</a></span></p></div>
-  
-  
-</div>
-<div class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-center" style="display:none;opacity:0.8;margin-left:20;margin-right:20;" id="SignUp">
-  <button class="w3-left w3-button" onclick="w3_closeS()" id="closeS"><i class="fa fa-remove"></i></button>
-  <a name="signup"><h1 class="w3-xxxlarge w3-text-theme">Sign Up</h1></a>
-  <form id="Sign Up" >
-  <label for="uem">Email</label><br>
-  <input type="text"  name="em" required><br>
-    <label for="um">Username</label><br>
-  <input type="text"  name="um" required><br>
-  <label for="pass">Password: </label><br/>
-  <input type="password"  name="password" required><br/>
-  <label for="pass2">Confirm Password: </label><br/>
-  <input type="password"  name="password2" required><br/>
-  <br/>
-<input type="submit" name="SignUp" value="Submit" style="border-radius: 25px" class="w3-button w3-theme"/>
-</form>
-  <div class="alt"><p>or go to <span style="color:blue;"><a href="#login">Login</a></span></p></div>
-  
-</div>
-<header class="w3-container w3-padding" style="margin-left:20;margin-right:20;">
-  <button onclick="w3_openS()" style="border-radius: 25px" class="w3-xlarge w3-button w3-theme w3-right">Sign Up</button>
-  <button onclick="w3_openL()" style="border-radius: 25px" class="w3-xlarge w3-button w3-right w3-text-white">Login</button>
-  </header>
-<div class="w3-middle w3-text-white w3-right ryg" >
-<br><br><br><br><br><br><br>
-<div class="w3-right w3-padding" style="text-decoration:bold;margin-right:25">
-<h1 style="text-decoration:bold" class=""><b>Reach your goals;<br> <span style="font-family:Fredoka One;color:#F2CD5E;font-size:32pt;">Bit.</span> by <span style="font-family:Fredoka One;color:#F2CD5E;font-size:32pt;">Bit.</span></b></h1>
-<p style="text-decoration:bold;font-size:14pt;">A platform by the students, of the students and for <br>the students consisting of top-notch students's<br> notes to help a student thrive<br>
-<br></p> 
-</div>
-</div>
-
-<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
-<script>
-// Side navigation
-function w3_openL(){
-  var x = document.getElementById("Login");
-  x.style.width = "100%";
-  x.style.fontSize = "40px";
-  x.style.paddingTop = "10%";
-  x.style.display = "block";
-}
-function w3_closeL(){
-  document.getElementById("Login").style.display = "none";
-}
-function w3_openS(){
-  var x = document.getElementById("SignUp");
-  x.style.width = "100%";
-  x.style.fontSize = "40px";
-  x.style.paddingTop = "10%";
-  x.style.display = "block";
-}
-function w3_closeS() {
-  document.getElementById("SignUp").style.display = "none";
-}
-
-</script>
-
-</body>
+    </script>   
+  </body>
 </html>
-
