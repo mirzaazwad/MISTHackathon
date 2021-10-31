@@ -1,3 +1,232 @@
+var myColor = ['rgb(226, 132, 24)', 'rgb(24, 161, 226)', "#fff979", "#faf9f6"];
+var myData = [10, 6, 2, 4];
+
+function getTotal() {
+  var myTotal = 0;
+  for (var j = 0; j < myData.length; j++) {
+    myTotal += (typeof myData[j] == 'number') ? myData[j] : 0;
+  } 
+  return myTotal;
+}
+
+function plotData() {
+  var canvas;
+  var ctx;
+  var lastend = 0;
+  var myTotal = getTotal();
+
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (var i = 0; i <4; i++) {
+    ctx.fillStyle = myColor[i];
+    ctx.beginPath();
+    ctx.moveTo(200, 150);
+    ctx.arc(200, 150, 150, lastend, lastend + (Math.PI * 2 * (myData[i] / myTotal)), false);
+    ctx.lineTo(200, 150);
+    ctx.fill();
+    lastend += Math.PI * 2 * (myData[i] / myTotal);
+  }
+}
+
+function generatePie() {
+  myData[1] = document.getElementById("sub1time").value;
+  myData[2] = document.getElementById("sub2time").value;
+  myData[3] = document.getElementById("sub3time").value;
+  myData[4] = document.getElementById("sub4time").value;
+
+  plotData();
+}
+
+document.getElementById("plotSubmit").onclick = generatePie;
+
+plotData();
+// start of functions when user clicks goals button 
+  function goals(x) {
+
+
+  document.querySelector('.active').classList.remove('active')
+  x.classList.add('active')
+
+  var goal=document.getElementById("goals");
+  
+  if(goal.style.display=="none"){
+  goal.style.display="block";
+  }
+
+
+  var study=document.getElementById("study");
+  if(study.style.display=="block"){
+  study.style.display="none";
+  }
+
+  var upload=document.getElementById("uploaded");
+  if(upload.style.display=="block"){
+  upload.style.display="none";
+  }
+
+  var save=document.getElementById("saved");
+  if(save.style.display=="block"){
+  save.style.display="none";
+  }
+  var profile=document.getElementById("profile");
+  if(profile.style.display=="block"){
+  profile.style.display="none";
+  }
+ 
+
+
+
+
+
+}
+  function profile(x) {
+
+
+  document.querySelector('.active').classList.remove('active')
+  x.classList.add('active')
+  var goal=document.getElementById("goals");
+   var profile=document.getElementById("profile");
+  if(profile.style.display=="none"){
+  profile.style.display="block";
+  }
+  if(goal.style.display=="block"){
+  goal.style.display="none";
+  }
+
+
+  var study=document.getElementById("study");
+  if(study.style.display=="block"){
+  study.style.display="none";
+  }
+
+  var upload=document.getElementById("uploaded");
+  if(upload.style.display=="block"){
+  upload.style.display="none";
+  }
+
+  var save=document.getElementById("saved");
+  if(save.style.display=="block"){
+  save.style.display="none";
+  }
+
+ 
+
+
+
+
+
+}
+
+// start of functions when user clicks uploaded button 
+function uploaded(x) {
+  document.querySelector('.active').classList.remove('active')
+  x.classList.add('active')
+
+var goal=document.getElementById("goals");
+  
+  if(goal.style.display=="block"){
+  goal.style.display="none";
+  }
+
+
+  var study=document.getElementById("study");
+  if(study.style.display=="block"){
+  study.style.display="none";
+  }
+
+  var upload=document.getElementById("uploaded");
+  if(upload.style.display=="none"){
+  upload.style.display="block";
+  }
+
+  var save=document.getElementById("saved");
+  if(save.style.display=="block"){
+  save.style.display="none";
+  }
+   var profile=document.getElementById("profile");
+  if(profile.style.display=="block"){
+  profile.style.display="none";
+  }
+
+
+ 
+}
+
+// start of functions when user clicks saved button 
+function saved(x) {
+  document.querySelector('.active').classList.remove('active')
+  x.classList.add('active')
+
+
+
+
+
+  var goal=document.getElementById("goals");
+  
+  if(goal.style.display=="block"){
+  goal.style.display="none";
+  }
+
+
+  var study=document.getElementById("study");
+  if(study.style.display=="block"){
+  study.style.display="none";
+  }
+
+  var upload=document.getElementById("uploaded");
+  if(upload.style.display=="block"){
+  upload.style.display="none";
+  }
+
+  var save=document.getElementById("saved");
+  if(save.style.display=="none"){
+  save.style.display="block";
+  }
+    var profile=document.getElementById("profile");
+  if(profile.style.display=="block"){
+  profile.style.display="none";
+  }
+
+ 
+}
+
+// start of functions when user clicks study time button 
+function study_time(x) {
+  document.querySelector('.active').classList.remove('active')
+  x.classList.add('active')
+
+var goal=document.getElementById("goals");
+  
+  if(goal.style.display=="block"){
+  goal.style.display="none";
+  }
+
+
+  var study=document.getElementById("study");
+  if(study.style.display=="none"){
+  study.style.display="block";
+  }
+
+  var upload=document.getElementById("uploaded");
+  if(upload.style.display=="block"){
+  upload.style.display="none";
+  }
+
+  var save=document.getElementById("saved");
+  if(save.style.display=="block"){
+  save.style.display="none";
+  }
+    var profile=document.getElementById("profile");
+  if(profile.style.display=="block"){
+  profile.style.display="none";
+  }
+
+
+  
+}
+
  const labels1 = [
 
 
@@ -87,174 +316,22 @@ var myChart1 = new Chart(
     document.getElementById('myChart1'),
     config
   );
-// start of functions when user clicks goals button 
-  function goals(x) {
 
 
-  document.querySelector('.active').classList.remove('active')
-  x.classList.add('active')
 
-  var goal=document.getElementById("goals");
-  
-  if(goal.style.display=="none"){
-  goal.style.display="block";
-  }
+function add_item(){
 
+var lt=document.getElementById("task_list");
+var node=document.createElement('LI');
+var textnode = document.createTextNode("chudir bhai");
+node.appendChild(textnode);
+lt.appendChild(node);
 
-  var study=document.getElementById("study");
-  if(study.style.display=="block"){
-  study.style.display="none";
-  }
-
-  var upload=document.getElementById("uploaded");
-  if(upload.style.display=="block"){
-  upload.style.display="none";
-  }
-
-  var save=document.getElementById("saved");
-  if(save.style.display=="block"){
-  save.style.display="none";
-  }
-  var profile=document.getElementById("profile");
-  if(profile.style.display=="block"){
-  profile.style.display="none";
-  }
+  // Clear your input 
+  input.value = "";
 }
-  function profile(x) {
+    
 
-
-  document.querySelector('.active').classList.remove('active')
-  x.classList.add('active')
-  var goal=document.getElementById("goals");
-   var profile=document.getElementById("profile");
-  if(profile.style.display=="none"){
-  profile.style.display="block";
-  }
-  if(goal.style.display=="block"){
-  goal.style.display="none";
-  }
-
-
-  var study=document.getElementById("study");
-  if(study.style.display=="block"){
-  study.style.display="none";
-  }
-
-  var upload=document.getElementById("uploaded");
-  if(upload.style.display=="block"){
-  upload.style.display="none";
-  }
-
-  var save=document.getElementById("saved");
-  if(save.style.display=="block"){
-  save.style.display="none";
-  }
-}
-
-// start of functions when user clicks uploaded button 
-function uploaded(x) {
-  document.querySelector('.active').classList.remove('active')
-  x.classList.add('active')
-
-var goal=document.getElementById("goals");
-  
-  if(goal.style.display=="block"){
-  goal.style.display="none";
-  }
-
-
-  var study=document.getElementById("study");
-  if(study.style.display=="block"){
-  study.style.display="none";
-  }
-
-  var upload=document.getElementById("uploaded");
-  if(upload.style.display=="none"){
-  upload.style.display="block";
-  }
-
-  var save=document.getElementById("saved");
-  if(save.style.display=="block"){
-  save.style.display="none";
-  }
-   var profile=document.getElementById("profile");
-  if(profile.style.display=="block"){
-  profile.style.display="none";
-  }
-}
-
-// start of functions when user clicks saved button 
-function saved(x) {
-  document.querySelector('.active').classList.remove('active')
-  x.classList.add('active')
-
-
-
-
-
-  var goal=document.getElementById("goals");
-  
-  if(goal.style.display=="block"){
-  goal.style.display="none";
-  }
-
-
-  var study=document.getElementById("study");
-  if(study.style.display=="block"){
-  study.style.display="none";
-  }
-
-  var upload=document.getElementById("uploaded");
-  if(upload.style.display=="block"){
-  upload.style.display="none";
-  }
-
-  var save=document.getElementById("saved");
-  if(save.style.display=="none"){
-  save.style.display="block";
-  }
-    var profile=document.getElementById("profile");
-  if(profile.style.display=="block"){
-  profile.style.display="none";
-  }
-
- 
-}
-
-// start of functions when user clicks study time button 
-function study_time(x) {
-  document.querySelector('.active').classList.remove('active')
-  x.classList.add('active')
-
-var goal=document.getElementById("goals");
-  
-  if(goal.style.display=="block"){
-  goal.style.display="none";
-  }
-
-
-  var study=document.getElementById("study");
-  if(study.style.display=="none"){
-  study.style.display="block";
-  }
-
-  var upload=document.getElementById("uploaded");
-  if(upload.style.display=="block"){
-  upload.style.display="none";
-  }
-
-  var save=document.getElementById("saved");
-  if(save.style.display=="block"){
-  save.style.display="none";
-  }
-    var profile=document.getElementById("profile");
-  if(profile.style.display=="block"){
-  profile.style.display="none";
-  }
-
-
-  
-}
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("myOverlay").style.display = "block";
@@ -333,19 +410,5 @@ function timer() {
 
 function returnData(input) {
   return input > 9 ? input : `0${input}`
-}
-function search_animal() {
-	let input = document.getElementById('searchbar').value
-	input=input.toLowerCase();
-	let x = document.getElementsByClassName('animals');
-	
-	for (i = 0; i < x.length; i++) {
-		if (!x[i].innerHTML.toLowerCase().includes(input)) {
-			x[i].style.display="none";
-		}
-		else {
-			x[i].style.display="list-item";				
-		}
-	}
 }
 
